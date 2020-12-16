@@ -1,7 +1,9 @@
-import React from 'react'
+import React,{ useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
 const ProductItem = () => {
+
+  const [product, setProduct] = useState({})
 
   //router -> query -> [nombreVariable]
   //declare: const router = useRouter()
@@ -11,9 +13,15 @@ const ProductItem = () => {
     query: { productId }
   } = useRouter()
 
+  useEffect(() => {
+    productId && fetch(`http://localhost:3000/api/avo/${productId}`)
+    .then(response => response.json())
+    .then(( data ) => setProduct(data))
+  }, [])
+
   return (
     <div>
-      Esta es la página del producto: {productId}
+      Esta es la página del producto: {product.name}
     </div>
   )
 }
