@@ -9,6 +9,12 @@ const Layout: React.FC = ({ children }) => {
       <Navbar />
       { children }
       <footer>This is the footer</footer>
+
+      <style jsx>{`
+        div {
+          background-color: salmon;
+        }
+      `}</style>
     </div>
   )
 }
