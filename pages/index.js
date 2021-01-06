@@ -1,20 +1,27 @@
 import React,{ useState, useEffect } from 'react'
+import fetch from 'isomorphic-unfetch'
 import Link from 'next/link'
 import styled from 'styled-components'
 
-import Navbar from '../components/Navbar/Navbar'
+export const getServerSideProps = async () => {
+  //1 async porque en el servidor meteremos toda la carga de traer info de la api
 
-const Home = () => {
+  //4 getServerSideProps sólo puede usar urls absolutas, por eso ya debe 
+  //  estar deployeada la app
+  const response = await fetch('https://platzi-avo.vercel.app/api/avo')
+  const { data: productList } = await response.json()
 
-  const [productList, setProductList] = useState([])
+  //2 esto retorna un objeto con los props
+  return {
+    props: {
+      productList,
+    },
+  }
+}
 
-  useEffect(() => {
-    window.fetch('api/avo')
-    .then(response => response.json())
-    .then(({ data }) => {
-      setProductList(data)
-    })
-  }, [])
+//3 productList ya no le pertenece, ahora sólo le llega como param
+const Home = ({ productList }) => {
+
   
   const StyledAnchor = styled.a`
     display: block;
