@@ -14,7 +14,7 @@ const ProductItem = () => {
   } = useRouter()
 
   useEffect(() => {
-    productId && fetch(`http://localhost:3000/api/avo/${productId}`)
+    productId && window.fetch(`/api/avo/${productId}`)
     .then(response => response.json())
     .then(( data ) => setProduct(data))
   }, [])
