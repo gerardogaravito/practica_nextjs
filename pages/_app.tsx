@@ -1,6 +1,10 @@
 import { AppProps } from 'next/app'
 import Layout from '@components/Layout/Layout'
 
+export function reportWebVitals(metric) {
+  console.log(metric)
+}
+
 function MyApp({ Component, pageProps }: AppProps) {
   // provider - Context/provider. theme, data
   // layout

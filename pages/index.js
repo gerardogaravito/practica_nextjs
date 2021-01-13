@@ -3,10 +3,10 @@ import fetch from 'isomorphic-unfetch'
 import Link from 'next/link'
 import styled from 'styled-components'
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   //1 async porque en el servidor meteremos toda la carga de traer info de la api
 
-  //4 getServerSideProps sólo puede usar urls absolutas, por eso ya debe 
+  //4 getStaticProps sólo puede usar urls absolutas, por eso ya debe 
   //  estar deployeada la app
   const response = await fetch('https://platzi-avo.vercel.app/api/avo')
   const { data: productList } = await response.json()
